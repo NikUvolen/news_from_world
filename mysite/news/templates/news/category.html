@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load news_tags %}
+
+{% block title %}
+  {{ category }} :: {{ block.super }}
+{% endblock title %}
+
+{% block contents %}
+  {{ category }}
+{% endblock contents %}
+
+{% block sidebar %}
+  {% show_categories %}
+{% endblock sidebar %}
+
+{% block content %}
+  <div class="col-md-9">
+    {% for item in news %}
+      <div class="card mb-3 text-white bg-secondary">
+        <div class="card-header">
+          Category: {{ item.category.title }}
+        </div>
+        <div class="card-body row">
+          <div class="media col-md-5">
+            {% if item.photo %}
+              <img src="{{ item.photo.url }}" alt="" width="400" class="" style="width: 100%">
+            {% else %}
+              <img src="https://picsum.photos/400/230?grayscale&blur=2" alt="" style="width: 100%">
+            {% endif %}
+          </div>
+          <div class="media-body col-md-5 padding-right-4">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description|truncatewords:50 }}</p>
+            <a href="{{ item.get_absolute_url }}" class="btn">Read more...</a>
+          </div>
+        </div>
+        <div class="card-footer text-light">
+          {{ item.created_at|date:"d.m.Y H:i:s" }}
+        </div>
+      </div>
+    {% empty %}
+      <h2 class="mb-4 text-white">Opss...nothing found</h2>
+    {% endfor %}
+  </div>
+{% endblock content %}
+
+{% block pagination %}
+  {% include 'inc/_pagination.html' with page_obj=page_obj %}
+{% endblock pagination %}
+

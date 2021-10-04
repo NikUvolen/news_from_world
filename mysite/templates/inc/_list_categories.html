@@ -1,0 +1,15 @@
+<div class="col-md-3 mb-5">
+    <div class="list-group">
+        <!-- <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            The current link item
+        </a> -->    
+        {% for category in categories %}
+            <a href="{{ category.get_absolute_url }}" class="category-link">
+                <li class="list-group-item list-group-item-mine d-flex justify-content-between align-items-center">
+                    {{ category.title }}
+                    <span class="badge bg-primary rounded-pill">{{ category.cnt }}</span>
+                </li>
+            </a>
+        {% endfor %}
+    </div>
+</div>

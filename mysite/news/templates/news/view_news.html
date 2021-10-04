@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load news_tags %}
+
+{% block title %}
+  {{ news_item.title }} :: {{ block.super }}
+{% endblock title %}
+
+{% block contents %}
+  {{ news_item.title }}
+{% endblock contents %}
+
+{% block sidebar %}
+  {% show_categories %}
+{% endblock sidebar %}
+
+{% block content %}
+  <div class="col-md-9">
+      <div class="card mb-3 text-white bg-secondary">
+        <div class="card-header">
+          Category: <a href="{{ news_item.category.get_absolute_url }}" class="text-white text-decoration-none">{{ news_item.category.title }}</a>
+        </div>
+        <div class="card-body row">
+          <div class="col-md-5">
+            {% if news_item.photo %}
+              <img src="{{ news_item.photo.url }}" alt="" width="400" class="" style="width: 100%">
+            {% else %}
+              <img src="https://picsum.photos/400/230?grayscale&blur=2" alt="" class="" style="width: 100%">
+            {% endif %}
+          </div>
+          <div class="media-body col-md-7">
+            <h5 class="card-title">{{ news_item.title }}</h5>
+            <p class="card-text">{{ news_item.description }}</p>
+          </div>
+        </div>
+        <div class="card-footer text-light">
+          {{ news_item.created_at|date:"d.m.Y H:i:s" }}
+        </div>
+      </div>
+  </div>
+{% endblock content %}

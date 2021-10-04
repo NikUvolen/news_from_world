@@ -1,0 +1,99 @@
+{% load static %}
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/paginations.css' %}">
+  <title>{% block title %}News from world{% endblock title %}</title>
+
+  <style>
+    .list-group-item-mine {
+      background-color: var(--bs-secondary);
+      color: var(--bs-light);
+      cursor: pointer;
+
+      transition: color .1s linear,
+                  background-color .1s linear;
+    }
+
+    .list-group-item-mine:hover {
+      color: var(--bs-dark);
+      background-color: var(--bs-light);
+    }
+
+    .category-link {
+      text-decoration: none;
+    }
+
+    .btn {
+      background-color: var(--bs-dark);
+      color: var(--bs-light);
+    }
+
+    .btn:hover {
+      background-color: var(--bs-light);
+      color: var(--bs-dark);
+    }
+
+    .invalid-feedback-display {
+      display: block;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px var(--bs-secondary); 
+    }
+  </style>
+</head>
+
+<body class="bg-dark">  
+  <div class="page">
+    {% include 'inc/_nav.html' %}
+
+    <main class="wrapper">
+      <div class="container mt-3 content">
+        <h1 class="mb-4 text-white">{% block contents %}{% endblock contents %}</h1>
+
+        <div class="row">
+
+          {% block sidebar %}{% endblock sidebar %}
+
+          {% if messages %}
+            {% for message in messages %}
+              {% if message.tags == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+              {% else %}
+                <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          {% block content %}CONTENT{% endblock content %}
+
+        </div>
+      </div>
+    </main>
+
+    {% block pagination %}{% endblock pagination %}
+
+    {% include 'inc/_footer.html' %}
+  </div>
+
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

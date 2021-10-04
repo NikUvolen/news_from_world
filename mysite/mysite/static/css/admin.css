@@ -1,0 +1,22 @@
+#header {
+    background: #6c757d;
+    color: #fff;
+}
+
+.module caption, .inline-group h2 {
+    background: #6c757d;
+    color: #fff;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+}
+
+div.breadcrumbs {
+    background: #263238;
+    margin-bottom: 20px;
+}
+
+#nav-sidebar .current-model {
+    background: #263238;
+}

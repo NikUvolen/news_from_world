@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <title>404 error :: {{ title }}</title>
+    <style>
+        body,html {
+            height: 100%;
+        }
+        
+        .error-title {
+            font-size: 128px;
+        }
+
+        .error-subtitle {
+            font-size: 64px;
+        }
+
+        .error-back {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="text-center">
+                <h1 class="text-white error-title mb-0">404</h1>
+                <h3 class="text-white error-subtitle mb-5">page not found</h3>
+                <a href="{% url 'home' %}" class="text-light error-back">back to homepage</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'bootstrap/css/bootstrap.min.js' %}"></script>
+</body>
+</html>
